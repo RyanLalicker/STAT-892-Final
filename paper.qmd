@@ -4,7 +4,7 @@ author: Ryan Lalicker
 date: today
 date-format: long
 abstract: |
-  WRITE ABSTRACT BEFORE SUBMITTING  (@test)
+  WRITE ABSTRACT BEFORE SUBMITTING  (@test) (@lauer)
 execute: 
   echo: false
   warning: false
@@ -46,6 +46,17 @@ editor:
 
 # Introduction
 
+Many areas of research rely on visualizations to express data and to give a general audience an overview of the topic without making them suffer through an academic paper over an area they have little to no experience in.  This applies to other areas of life as well such as news, entertainment, and public health that  reach the largest audience possible with easily-digestible visualizations and quick explanations over in-depth, domain specific reports. 
+**Get CITATION**
+Although this practice goes back many centuries (@firstplot), in today's fast moving technology driven world expressing information through visualizations has never been easier.  Yet, visualizations need to be effective in order to have the desired outcome of educating the public.
+
+
+
+
+This leads
+
+
+
 
 The accompanying files to this project can be found [here](https://github.com/RyanLalicker/STAT-892-Final), or by reaching out to me.
 
@@ -53,6 +64,8 @@ The accompanying files to this project can be found [here](https://github.com/Ry
 # Motivation
 
 # Literary Review
+
+In 
 
 # Experimental Methods
 
