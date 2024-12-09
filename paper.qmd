@@ -1,5 +1,5 @@
 ---
-title: "Grammar of Graphics Midterm Paper"
+title: "STAT 892 - Final Paper"
 author: Ryan Lalicker
 date: today
 date-format: long
