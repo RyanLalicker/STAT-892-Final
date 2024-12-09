@@ -1,0 +1,91 @@
+---
+title: "Grammar of Graphics Midterm Paper"
+author: Ryan Lalicker
+date: today
+date-format: long
+abstract: |
+  WRITE ABSTRACT BEFORE SUBMITTING  (@test)
+execute: 
+  echo: false
+  warning: false
+columns: 2
+format:
+  pdf:
+    fig-align: center
+    fig-width: 6
+    fig-height: 4
+bibliography: references.bib
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r}
+#| label: fig-set-up
+#| echo: false
+#| eval: true
+
+# Add all necessary libraries here.
+
+
+# Datasets used.
+
+```
+
+```{r}
+#| label: fig-scratch-work
+#| echo: false
+#| eval: false
+
+# Any work done in R that should not be ran as part of the paper can go here.
+## EX: How many unique entires in a dataset.
+
+
+```
+
+
+# Introduction
+
+
+The accompanying files to this project can be found [here](https://github.com/RyanLalicker/STAT-892-Final), or by reaching out to me.
+
+
+# Motivation
+
+# Literary Review
+
+# Experimental Methods
+
+# Data Collection
+
+# Analysis Plan
+
+# Conclusion
+
+
+\newpage
+
+# References
+
+::: {#refs}
+:::
+
+\newpage
+
+# Appendix A: R Code
+
+```{r}
+#| label: appendix-A
+#| echo: true
+#| eval: false
+
+
+
+```
+\newpage
+
+# Appendix B: AI Prompts and Answers
+
+**Prompt:** How many R's are in the word strawberry?
+
+**Answer:** The word strawberry contains three R's.
