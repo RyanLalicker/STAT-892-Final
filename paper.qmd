@@ -26,9 +26,11 @@ editor:
 #| eval: true
 
 # Add all necessary libraries here.
-
+library(ggplot2)
+library(dplyr)
 
 # Datasets used.
+covid <- read.csv("2020 US Covid Deaths.csv")
 
 ```
 
@@ -46,14 +48,53 @@ editor:
 
 # Introduction
 
-Many areas of research rely on visualizations to express data and to give a general audience an overview of the topic without making them suffer through an academic paper over an area they have little to no experience in.  This applies to other areas of life as well such as news, entertainment, and public health that  reach the largest audience possible with easily-digestible visualizations and quick explanations over in-depth, domain specific reports. 
-**Get CITATION**
-Although this practice goes back many centuries (@firstplot), in today's fast moving technology driven world expressing information through visualizations has never been easier.  Yet, visualizations need to be effective in order to have the desired outcome of educating the public.
+Many areas of research rely on visualizations to express their findings to both experts in the field and the general public alike. This applies to other areas of life as well such as news, entertainment, and public health that  reach the largest audience possible with easily-digestible visualizations and quick explanations over in-depth, domain specific reports. (@Unwin2020Why). Although this practice goes back many centuries (@firstplot), in today's fast moving technology driven world creating visualizations has never been easier.  Yet, visualizations need to be effective in order to have the desired outcome of educating the public.
+
+What makes a visualization effective though?  In my opinion the components of effective visualizations can be grouped into two categories: accurate representations of the data and making the visualization readable for the public.  The former is an ethical job since whether intentional or not, misleading or outright false visualizations hinder the true findings of the research. The second category has many components to it.  Taking into account accessibility concerns such as avoiding plots based in red and green together and ensuring axes and labels are readable for the viewer.  Note, the latter point falls into both categories.
+
+Perhaps the greatest challenge of making visualizations for the public though is taking into account their graphical literacy.  An example of this is occurred during the first year of the COVID-19 pandemic.  Many American media outlets chose to use a logarithmic scale to illustrate the total number of deaths.  As seen in @fig-covid, the logarithmic scale on the right does a better job of showing how the rate of deaths is changing than the linear scale on the left.  However, as a study by @logCovid finds, people understood the linear scale far more than the logarithmic scale due to their lack of experience with the latter.  This illustrates how choosing the plot that one feels best represents the data is not always the one an audience understands.
 
 
+```{r,,fig.pos="H"}
+#| label: fig-covid
+#| echo: false
+#| eval: true
+#| fig-cap: "COVID-19 deaths in the United States. Data from Febrary 9 through April 18, 2020.  Data provided by @COVIDdeaths."
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Linear scale"
+#|  - "logarithmic scale"
+#| fig-width: 6
+#| fig-height: 4
 
 
-This leads
+covid$End.Date <- as.Date(covid$End.Date, format = "%m/%d/%Y")
+
+covid_filtered <- covid %>% 
+  filter(End.Date >= "2020-02-09") %>%
+  filter(End.Date <= "2020-04-18")
+
+covid_filtered2 <- covid_filtered %>%
+  mutate(COVID.19.Deaths = if_else(End.Date < "2020-02-29", NA, COVID.19.Deaths))
+
+ggplot(covid_filtered, aes(x = End.Date, y = COVID.19.Deaths)) +
+  geom_line(color = "dodgerblue2", size = 1) + # Line properties
+  labs(
+    x = "Date in 2020",
+    y = "COVID-19 Deaths"
+  ) +
+  theme_minimal()
+
+ggplot(covid_filtered2, aes(x = End.Date, y = log(COVID.19.Deaths))) +
+  geom_line(color = "dodgerblue2", size = 1) + # Line properties
+  labs(
+    x = "Date in 2020",
+    y = "Log of COVID-19 Deaths"
+  ) +
+  ylim(0, 12) +
+  theme_minimal()
+
+```
 
 
 
