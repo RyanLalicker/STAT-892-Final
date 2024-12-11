@@ -48,11 +48,20 @@ covid <- read.csv("2020 US Covid Deaths.csv")
 
 # Introduction
 
-Many areas of research rely on visualizations to express their findings to both experts in the field and the general public alike. This applies to other areas of life as well such as news, entertainment, and public health that  reach the largest audience possible with easily-digestible visualizations and quick explanations over in-depth, domain specific reports. (@Unwin2020Why). Although this practice goes back many centuries (@firstplot), in today's fast moving technology driven world creating visualizations has never been easier.  Yet, visualizations need to be effective in order to have the desired outcome of educating the public.
+Many areas of research rely on visualizations to express their findings to both experts in the field and the general public alike. This applies to other areas of life as well such as news, entertainment, and public health that reach the largest audience possible with easily-digestible visualizations and quick explanations over in-depth, domain specific reports. (@Unwin2020Why). Although this practice goes back many centuries (@firstplot), in today's fast moving-technology driven world creating visualizations has never been easier.  Yet, visualizations need to be effective in order to have the desired outcome of educating the public.
 
-What makes a visualization effective though?  In my opinion the components of effective visualizations can be grouped into two categories: accurate representations of the data and making the visualization readable for the public.  The former is an ethical job since whether intentional or not, misleading or outright false visualizations hinder the true findings of the research. The second category has many components to it.  Taking into account accessibility concerns such as avoiding plots based in red and green together and ensuring axes and labels are readable for the viewer.  Note, the latter point falls into both categories.
+A key issue in creating effective visualizations is that of bias.  Sometimes bias comes from the presenter of information.  Mistakes in visualizations can lead others to draw the wrong conclusions.  Other times, the presenter may take advantage of an audience's trust to mislead them with purposely biased plots.  Bias does not come from just the presenter though.  Audience members with long-held beliefs on certain subjects may resist new information that contradicts their previous opinion.
 
-Perhaps the greatest challenge of making visualizations for the public though is taking into account their graphical literacy.  An example of this is occurred during the first year of the COVID-19 pandemic.  Many American media outlets chose to use a logarithmic scale to illustrate the total number of deaths.  As seen in @fig-covid, the logarithmic scale on the right does a better job of showing how the rate of deaths is changing than the linear scale on the left.  However, as a study by @logCovid finds, people understood the linear scale far more than the logarithmic scale due to their lack of experience with the latter.  This illustrates how choosing the plot that one feels best represents the data is not always the one an audience understands.
+Another issue with effectively communicating through visualization is audience understanding.  While good visualizations are meant to be accessible, sometimes the best way to show data can be largely unknown to the public.  This diminishes the effect of the visualization.
+
+In this paper I will propose an experiment with the intent to account for several facets of audience interactions with plots.  The experiment will measure how a general audience perceives biased plots versus more neutral plots while measuring performance across different plot types and topics. The files used in the paper can be found [here](https://github.com/RyanLalicker/STAT-892-Final).
+
+
+# Motivation
+
+To understand how bias can show up in creating and interpreting visualizations we first need to discuss what makes an effective visualization. In my opinion the components of effective visualizations can be grouped into two categories: accurate representations of the data and making a visualization readable for the public.  The former is an ethical responsibility for a researcher since, whether intentional or not, misleading or outright false visualizations hinder the true findings of the research. The second category has many components to it.  These include taking into account accessibility concerns such as avoiding plots based in red and green together and ensuring axes and labels are readable for the viewer.  Note, the latter point falls into both categories.
+
+Perhaps the greatest challenge of making effective visualizations is considering the public's graphical literacy.  An example of this occurred during the first year of the COVID-19 pandemic.  Many American media outlets chose to use a logarithmic scale to illustrate the total number of deaths.  As seen in @fig-covid, the logarithmic scale on the right does a better job of showing how the rate of deaths is changing than the linear scale on the left.  However, a study by @logCovid found on average both experienced scientists and the general public that took part in the study understand the linear scale far more than the logarithmic scale.  This is likely due to a lack of experience with log functions and illustrates how choosing the plot that one feels best represents the data is not always the one an audience understands.
 
 
 ```{r,,fig.pos="H"}
@@ -97,12 +106,21 @@ ggplot(covid_filtered2, aes(x = End.Date, y = log(COVID.19.Deaths))) +
 ```
 
 
+The example above shows how the creator of a visualization can do what they believe is right and still have difficulty getting their point across due to audience misunderstanding.  One element I want to look at is what types of basic visualizations do people understand best.  While it seems likely the public would struggle to understand non-linear scales, knowing how pie charts compare to bar charts in terms of audience understanding would be useful.
+
+The main focus of this experiment, however, is how the public perceives misleading visualizations compared to accurate plots.  These misleading visualizations can of course be honest mistakes by the creator or publisher of the visualization, but in some cases it may be intentionally. Some of the ways this can happen include ill-fitting chart types, the y-axis not starting at zero, data being plotted incorrectly, or even exaggerated plot and axis titles.  When plots exhibiting one or more of these issues are published, viewers could consider the misleading information factual, which presents many problems for society.
+
+An example of this is in the plot below which shows the unemployment rate through the year 2011.  The photo was taken from a segment aired by Fox News.  This plot is misleading in two ways.  First, the y-axis goes from 8% to 10%, leading to any changes in the unemployment rate from one month to another to be more pronounced.  Additionally, the November percentage of 8.6%, which appears to be the lowest of the year, is instead shown to be equivalent to the previous month's percentage of 9.0%.  (@misleading).
+
+![Plot of 2011 unemployment rate with misleading y-axis.  Published by Fox News in 2011.](fox-bad-graph.png){width=3.5in}
+
+While this plot is not necessarily intentionally misleading, one could easily walk away with an opinion not supported by the underlying data.  It is also important to keep in mind the timing and source as well.  Economic issues were among the key issues Americans were concerned about following the Great Recession.  This means plots that make the economic situation seem worse than it is could have negative consequences.  (@gallup).  On top of this, Fox News averaged 1.87 million prime-time viewers for the year 2011, meaning many people could have been mislead at once.  (@TimesHerald).
+
+Knowing how the public perceives misleading graphics as compared to good graphics can give researchers a way to quantify the effects of misinformation. Previous work, such as that by @lauer did this while controlling for the plot type.  While the researchers attempted to account for potential biases from the creators of visualizations through mixing biased and unbiased plots in the experiment, they purposely avoided the other place bias can come from: the viewer.  The researchers made all plots related to non-controversial topics.  
+
+In this experiment I will account for potential audience bias by both including plot topics that are considered controversial along with non-controversial topics and by taking demographic information from each participant.  Both groups of topics will have a mix of biased and unbiased plots, as well as different types of graphs. Together, this will allow one to see how audience members with different opinions evaluate different types of graphics depending on the sensitivity of the topic and whether they can detect misleading information.
 
 
-The accompanying files to this project can be found [here](https://github.com/RyanLalicker/STAT-892-Final), or by reaching out to me.
-
-
-# Motivation
 
 # Literary Review
 
