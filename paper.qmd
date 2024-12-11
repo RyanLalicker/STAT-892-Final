@@ -124,9 +124,29 @@ In this experiment I will account for potential audience bias by both including 
 
 # Literary Review
 
-START HERE
+**NEED CITATIONS ON HOW TO MAKE GOOD GRAPHICS**
+
+As previously alluded to, the main inspiration for this experiment was the one performed by @lauer.  Their experiment showed each participant four different kinds of plots in a random order.  These plots were a bar chart, a line graph, a pie chart, and a bubble graph.  Each chart had a deceptive version and a nondeceptive version, called the control, based on the same data.  Note, the deceptive plot used many of the tactics discussed previously in this paper.  On top of the plots themselves, two titles for each topic were written, again with one being deceptive and one not.  This made it so each graph type had four different possible ways to be presented.  As previously mentioned, the researchers intentionally chose non-controversial topics. 
+
+The participants were then asked a question about their perception of the plot and provided answers on a scale from one to six.  These questions focused on potential changes or differences from one state to another.  This allowed for a lower score to indicate a small change, while larger scores corresponded to larger changes.  After completing a question for each of the four plot types, participants were then asked to rank the graphs from easiest to hardest to understand and state how comfortable they were with each plot type through multiple choice questions.  
+
+In total, the experiment had 329 participants.  These participants were either first-year students in psychology classes at Arizona State University or instructors in similar fields at different universities.  While this was convenient for the researchers, it is unlikely this group is representative of the population at large, since all participants are either college students or faculty.
+
+
+**What I would change**
+```
+Need to discuss:
+  # Participants - need more diversity across society
+  # Results - Titles seemed to have little effect so I will cut them.
+  # Noncontroversial topics - I want more.
+```
+
+
 
 # Experimental Methods
+
+
+
 
 # Data Collection
 
