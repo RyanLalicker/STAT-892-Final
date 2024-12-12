@@ -143,7 +143,7 @@ First, the y-axis goes from 8% to 10%, leading to any changes in the unemploymen
 Additionally, the November percentage of 8.6%, which appears to be the lowest of the year, is instead shown to be equivalent to the previous month's percentage of 9.0%.
 (@misleading).
 
-![Plot of 2011 unemployment rate with misleading y-axis. Published by Fox News in 2011.](fox-bad-graph.png){width="3.5in"}
+![Plot of 2011 unemployment rate with misleading y-axis. Published by Fox News in 2011.](fox-bad-graph.png){width="3.5in" #fig-fox}
 
 While this plot is not necessarily intentionally misleading, one could easily walk away with an opinion not supported by the underlying data.
 It is also important to keep in mind the timing and source as well.
@@ -182,14 +182,14 @@ In total, the experiment had 329 participants.
 These participants were either first-year students in psychology classes at Arizona State University or instructors in similar fields at different universities.
 While this was convenient for the researchers, it is unlikely this group is representative of the population at large, since all participants are either college students or faculty.
 
-The results of the plot interpretation are shown in the next figure.
+The results of the plot interpretation are shown in @fig-lauer-results.
 (@lauer, pg.333).
 In each plot type, the largest average scores, which again indicate the greater perceived change from one state to another, come from the deceptive plots.
 This gap is somewhat pronounced in all plot types except the bubble graphs.
 Meanwhile, exaggerated plot titles seems to have played far less of a role in participant answers.
 This could suggest that viewers are better equipped to disregard poor headlines than poor graphs.
 
-![Mean responses to graphs in the experiment by @lauer.](old-study-results.png)
+![Mean responses to graphs in the experiment by @lauer.](old-study-results.png){#fig-lauer-results}
 
 While attempting to replicate the title effect would be interesting, for this experiment I will not be focusing on plot titles.
 In its place, each plot type will have a deceptive and control plot related to a controversial topic with a neutral headline for all plots.
@@ -271,6 +271,9 @@ The version shown to the audience will be decided through randomization.
 The control and deceptive plots must follow certain guidelines.
 For bar charts, the control graphs must have an equal width for each bar and an axis that starts at zero.
 While there are many ways to make a deceptive bar chart, this experiment will focus on a y-axis starting at some number other than zero.
+@fig-bar shows the ticket sales for a fictional minor league baseball team in 2018 and 2023.
+In the control plot, the y-axis starts at zero and goes to \$15,000.
+The y-axis of the deceptive plot not only starts at \$11,00, but also stops at \$14,000.  Visually this suggests the ticket sales increased by a factor of three or four instead of the 12.5% increase that actually occurred.
 
 ```{r,,fig.pos="H"}
 #| label: fig-bar
@@ -290,18 +293,61 @@ RubberDucks <- data.frame(
 )
 
 ggplot(RubberDucks, aes(x = Year, y = Sales)) +
-  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue") +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue") + coord_cartesian(ylim = c(0, 15000)) +
   labs(title = "Ticket Sales for AAA Baseball Team",
        x = "Year",
        y = "Tickets Sold") +
   theme_minimal()
 
 ggplot(RubberDucks, aes(x = Year, y = Sales)) +
-  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue") + coord_cartesian(ylim = c(11500, 13800)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue") + coord_cartesian(ylim = c(11500, 14000)) +
   labs(title = "Ticket Sales for AAA Baseball Team",
        x = "Year",
        y = "Tickets Sold") +
   theme_minimal()
+```
+
+The line plots will follow the same guideline as the bar graphs.
+Control plots will start have the y-axis beginning at zero while deceptive plots will have an altered y-axis to make changes from one time point to another seem larger.  
+An example of the deceptive plot can be found in @fig-fox, while @fig-line shown later on is a control plot. **VERIFY THIS.**
+Note, the data points will be plotted correctly for all line plots, unlike in @fig-fox.
+
+**DOUBLE CHECK THIS BEFORE SUBMITTING**
+
+
+
+
+
+
+```{r,,fig.pos="H"}
+#| label: fig-pie
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+control_movies <- data.frame(
+  Genre = c("Action", 
+            "Romance",
+            "Thriller", 
+            "Sci-Fi", 
+            "Western", 
+            "Epic"),
+  Percentage = c(28, 23, 22, 
+                 13, 10, 4)
+)
+28+23+22+13+10
+deceptive_movies <- data.frame{
+  Genre = c("Action", "Romance", "Thriller", "Sci-Fi", "Western", "Epic")
+  Percentage = c(39, 28, 25, 5, 2, 1)
+}
+
+
 
 
 ```
@@ -310,7 +356,46 @@ ggplot(RubberDucks, aes(x = Year, y = Sales)) +
 
 
 
+```{r,,fig.pos="H"}
+#| label: fig-bubble
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+
+### Plot Questions
+
+
+
+```{r,,fig.pos="H"}
+#| label: fig-line
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+
 ### Demographic Questions
+
+
+
+
+
 
 # Data Collection
 
