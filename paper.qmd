@@ -10,7 +10,7 @@ execute:
   warning: false
 columns: 2
 format:
-  pdf:
+  docx:
     fig-align: center
     fig-width: 6
     fig-height: 4
@@ -124,32 +124,27 @@ In this experiment I will account for potential audience bias by both including 
 
 # Literary Review
 
-**NEED CITATIONS ON HOW TO MAKE GOOD GRAPHICS**
-
 As previously alluded to, the main inspiration for this experiment comes from @lauer.  Their experiment showed each participant four different kinds of plots in a random order.  These plots were a bar chart, a line graph, a pie chart, and a bubble graph.  Each plot had a deceptive version and a nondeceptive version, called the control, based on the same data.  Note, the deceptive plot used many of the tactics discussed previously in this paper.  On top of the plots themselves, two titles for each topic were written, again with one being deceptive and one not.  This made it so each graph type had four different possible ways to be presented.  As previously mentioned, the researchers intentionally chose non-controversial topics. 
 
 The participants were then asked a questions about their perception of each plot and provided answers on a scale from one to six.  These questions focused on potential changes or differences from one state to another.  This allowed for a lower score to indicate a small change, while larger scores corresponded to larger changes.  After completing a question for each of the four plot types, participants were then asked to rank the graphs from easiest to hardest to understand and finally state how comfortable they were with each plot type through multiple choice questions.  
 
 In total, the experiment had 329 participants.  These participants were either first-year students in psychology classes at Arizona State University or instructors in similar fields at different universities.  While this was convenient for the researchers, it is unlikely this group is representative of the population at large, since all participants are either college students or faculty.
 
-The results of the plot interpretation are shown below. (@lauer, pg.333).
-
-
+The results of the plot interpretation are shown in the next figure. (@lauer, pg.333).  In each plot type, the largest average scores, which again indicate the greater perceived change from one state to another, come from the deceptive plots.  This gap is somewhat pronounced in all plot types except the bubble graphs.  Meanwhile, exaggerated plot titles seems to have played far less of a role in participant answers.  This could suggest that viewers are better equipped to disregard poor headlines than poor graphs.  
 
 ![Mean responses to graphs in experiment by @lauer.](old-study-results.png)
 
+While attempting to replicate the title effect would be interesting, for this experiment I will not be focusing on plot titles.  In its place, each plot type will have a deceptive and control plot related to a controversial topic with a neutral headline for all plots.  This is what I believe the experiment by @lauer is lacking in regards to my own research interests of the role bias plays in the perception of visualizations.
 
+For a better understanding of how to conduct an experiment that measured bias I considered a study by @schwalbe2024.  The study was focused on how American individuals from different backgrounds perceive headlines and corresponding articles.  Half of the articles were nonpolitical while the other half were all related to Donald Trump.  These articles were graded on a scale from against to for Trump. The participants were shown an equal number of each.  The articles were also real news, fake news, and a mix of both in equal numbers.  
 
+Participants were asked questions about the articles.  These included whether the article was truthful and if they would share it with others.  These answers taken on a five-point scale ranging from negative to positive.  At the end of the study participants were asked several demographic questions, including their opinions of Donald Trump on a seven-point scale.  On this scale a one implied strong opposition, a four was neutral, and a seven was strong support.  Researchers chose to combine participants with scores of one to three in one group, five to seven in another, and leave scores of four as their own category.
 
+For the articles involving Trump, researchers labeled cases concordant when the article skew matched the participants beliefs and discordant when they did not.  Researchers used these labels along with participant answers to generate a political bias score.  The results of this metric highlight the importance of this research as the authors found real news was more effected by bias than fake news.
 
-**What I would change**
-```
-Need to discuss:
-  # Participants - need more diversity across society
-  # Results - Titles seemed to have little effect so I will cut them.
-  # Noncontroversial topics - I want more.
-```
-
+Participants were recruited through a platform called Lucid.  The service used quota sampling based off demographic targets to find participants on multiple websites.  Researchers used quota sampling to ensure their sample reflected the U.S. Census for many demographic variables.  2,180 participants were recruited, though 371 were excluded for failing to follow survey rules or missing attention checks built into the survey.
+  
+While this study focused on articles instead of visualizations, it shows ways of measuring bias that I believe could be applied to a graphics study. Additionally, quota sampling presents an interesting approach to building a sample.  
 
 
 # Experimental Methods
