@@ -10,7 +10,7 @@ execute:
   warning: false
 columns: 2
 format:
-  docx:
+  pdf:
     fig-align: center
     fig-width: 6
     fig-height: 4
@@ -28,6 +28,8 @@ editor:
 # Add all necessary libraries here.
 library(ggplot2)
 library(dplyr)
+library(knitr)
+library(kableExtra)
 
 # Datasets used.
 covid <- read.csv("2020 US Covid Deaths.csv")
@@ -116,15 +118,15 @@ An example of this is in the plot below which shows the unemployment rate throug
 
 While this plot is not necessarily intentionally misleading, one could easily walk away with an opinion not supported by the underlying data.  It is also important to keep in mind the timing and source as well.  Economic issues were among the key issues Americans were concerned about following the Great Recession.  This means plots that make the economic situation seem worse than it is could have negative consequences.  (@gallup).  On top of this, Fox News averaged 1.87 million prime-time viewers for the year 2011, meaning many people could have been mislead at once.  (@TimesHerald).
 
-Knowing how the public perceives misleading graphics as compared to good graphics can give researchers a way to quantify the effects of misinformation. Previous work, such as that by @lauer did this while controlling for the plot type.  While the researchers attempted to account for potential biases from the creators of visualizations through mixing biased and unbiased plots in the experiment, they purposely avoided the other place bias can come from: the viewer.  The researchers made all plots related to non-controversial topics.  
+Knowing how the public perceives misleading graphics as compared to good graphics can give researchers a way to quantify the effects of misinformation. Previous work, such as that by @lauer did this while controlling for the plot type.  While the researchers attempted to account for potential biases from the creators of visualizations through mixing biased and unbiased plots in the experiment, they purposely avoided the other place bias can come from: the viewer.  The researchers made all plots related to noncontroversial topics.  
 
-In this experiment I will account for potential audience bias by both including plot topics that are considered controversial along with non-controversial topics and by taking demographic information from each participant.  Both groups of topics will have a mix of biased and unbiased plots, as well as different types of graphs. Together, this will allow one to see how audience members with different opinions evaluate different types of graphics depending on the sensitivity of the topic and whether they can detect misleading information.
+In this experiment I will account for potential audience bias by both including plot topics that are considered controversial along with noncontroversial topics and by taking demographic information from each participant.  Both groups of topics will have a mix of biased and unbiased plots, as well as different types of graphs. Together, this will allow one to see how audience members with different opinions evaluate different types of graphics depending on the sensitivity of the topic and whether they can detect misleading information.
 
 
 
 # Literary Review
 
-As previously alluded to, the main inspiration for this experiment comes from @lauer.  Their experiment showed each participant four different kinds of plots in a random order.  These plots were a bar chart, a line graph, a pie chart, and a bubble graph.  Each plot had a deceptive version and a nondeceptive version, called the control, based on the same data.  Note, the deceptive plot used many of the tactics discussed previously in this paper.  On top of the plots themselves, two titles for each topic were written, again with one being deceptive and one not.  This made it so each graph type had four different possible ways to be presented.  As previously mentioned, the researchers intentionally chose non-controversial topics. 
+As previously alluded to, the main inspiration for this experiment comes from @lauer.  Their experiment showed each participant four different kinds of plots in a random order.  These plots were a bar chart, a line graph, a pie chart, and a bubble graph.  Each plot had a deceptive version and a nondeceptive version, called the control, based on the same data.  Note, the deceptive plot used many of the tactics discussed previously in this paper.  On top of the plots themselves, two titles for each topic were written, again with one being deceptive and one not.  This made it so each graph type had four different possible ways to be presented.  As previously mentioned, the researchers intentionally chose noncontroversial topics. 
 
 The participants were then asked a questions about their perception of each plot and provided answers on a scale from one to six.  These questions focused on potential changes or differences from one state to another.  This allowed for a lower score to indicate a small change, while larger scores corresponded to larger changes.  After completing a question for each of the four plot types, participants were then asked to rank the graphs from easiest to hardest to understand and finally state how comfortable they were with each plot type through multiple choice questions.  
 
@@ -132,7 +134,7 @@ In total, the experiment had 329 participants.  These participants were either f
 
 The results of the plot interpretation are shown in the next figure. (@lauer, pg.333).  In each plot type, the largest average scores, which again indicate the greater perceived change from one state to another, come from the deceptive plots.  This gap is somewhat pronounced in all plot types except the bubble graphs.  Meanwhile, exaggerated plot titles seems to have played far less of a role in participant answers.  This could suggest that viewers are better equipped to disregard poor headlines than poor graphs.  
 
-![Mean responses to graphs in experiment by @lauer.](old-study-results.png)
+![Mean responses to graphs in the experiment by @lauer.](old-study-results.png)
 
 While attempting to replicate the title effect would be interesting, for this experiment I will not be focusing on plot titles.  In its place, each plot type will have a deceptive and control plot related to a controversial topic with a neutral headline for all plots.  This is what I believe the experiment by @lauer is lacking in regards to my own research interests of the role bias plays in the perception of visualizations.
 
@@ -149,12 +151,84 @@ While this study focused on articles instead of visualizations, it shows ways of
 
 # Experimental Methods
 
+### Sets of Plots
+
+The survey used in this experiment will consist of two sets of plots:  one set related to noncontroversial topics and one for controversial topics.  For simplicity the controversial topics will be related to politics, health, or the environment.  Specifically, the topics will be chosen if they tend to be interpreted differently based on ones position on the left-right political spectrum.  The noncontroversial set will focus on topics less likely to fit onto this spectrum. The topics in both sets should be based in the country of the participants in an attempt to mimic a visualization they could see in their daily lives.  For the purpose of this paper we can assume the participants are all living in the United States.
 
 
+```{r,,fig.pos="H"}
+#| label: fig-topics
+#| echo: false
+#| eval: true
+#| fig-cap: "Potential topics used for generating plots sorted into the sets outlined in the paper."
+
+topics <- data.frame(
+  Noncontroversial = c("Movies from a particular studio in a year",
+              "Graduation rates at public universities", 
+              "Ticket sales of  minor league baseball team",
+              "Adoption rates at a pet shelter"),
+  Controversial = c("Changes in unemployment rate",
+           "Government spending",
+           "Changes in average temperatures over time",
+           "Gun deaths in a major city")
+)
+
+kable(topics)
+
+```
+
+Some examples of potential topics are shown in @fig-topics.  Plots related minor league baseball teams and pet adoptions in a random U.S. town are unlikely to come with the prior biases that accompany climate change or gun violence visualizations.  One key point related to some of the controversial takes is timing.  In terms of where answers fall on a political spectrum, opinions on a statistic like the unemployment rate change based on who is in power.  This implies that the survey portion of the experiment should not take place between a national election and the inauguration of any new president or congress.
+
+
+
+### Plot Types
+
+For this experiment, participants will be shown four types of graphs.  These will be bar charts, line plots, pie charts, and bubble graphs. Each chart type will appear once per set in a random order.  As was the case in the experiment by @lauer, each plot will have a control version and a deceptive version.  The version shown to the audience will be decided through randomization.
+
+The control and deceptive plots must follow certain guidelines.  For bar charts, the control graphs must have an equal width for each bar and an axis that starts at zero.  While there are many ways to make a deceptive bar chart, this experiment will focus on a y-axis starting at some number other than zero.  
+
+```{r,,fig.pos="H"}
+#| label: fig-bar
+#| echo: false
+#| eval: true
+#| fig-cap: "Example of a bar chart related to ticket sales of a fictional AAA baseball team in 2018 and 2023."
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+RubberDucks <- data.frame(
+  Year = c("2018", "2023"),
+  Sales = c(12000, 13500)
+)
+
+ggplot(RubberDucks, aes(x = Year, y = Sales)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue") +
+  labs(title = "Ticket Sales for AAA Baseball Team",
+       x = "Year",
+       y = "Tickets Sold") +
+  theme_minimal()
+
+ggplot(RubberDucks, aes(x = Year, y = Sales)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue") + coord_cartesian(ylim = c(11500, 13800)) +
+  labs(title = "Ticket Sales for AAA Baseball Team",
+       x = "Year",
+       y = "Tickets Sold") +
+  theme_minimal()
+
+
+```
+
+
+### Demographic Questions
 
 # Data Collection
 
 # Analysis Plan
+
+# Potential Flaws and Improvements
 
 # Conclusion
 
