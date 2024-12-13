@@ -281,7 +281,7 @@ Visually this suggests the ticket sales increased by a factor of three or four i
 #| label: fig-bar
 #| echo: false
 #| eval: true
-#| fig-cap: "Example of a bar chart related to ticket sales of a fictional AAA baseball team in 2018 and 2023."
+#| fig-cap: "Example of a bar chart for ticket sales of a fictional baseball team in 2018 and 2023.."
 #| layout-ncol: 2
 #| fig-subcap: 
 #|  - "Control"
@@ -296,14 +296,14 @@ RubberDucks <- data.frame(
 
 ggplot(RubberDucks, aes(x = Year, y = Sales)) +
   geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", width = 0.7) + coord_cartesian(ylim = c(0, 15000)) +
-  labs(title = "Ticket Sales for the Rockford Peaches baseball Team",
+  labs(title = "Ticket Sales for the Rockford Peaches Baseball Team",
        x = "Year",
        y = "Ticket Sales") +
   theme_minimal() + theme(panel.grid = element_blank())
 
 ggplot(RubberDucks, aes(x = Year, y = Sales)) +
   geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", width=0.7) + coord_cartesian(ylim = c(11500, 14000)) +
-  labs(title = "Ticket Sales for the Rockford Peaches baseball Team",
+  labs(title = "Ticket Sales for the Rockford Peaches Baseball Team",
        x = "Year",
        y = "Ticket Sales") +
   theme_minimal() + theme(panel.grid = element_blank())
