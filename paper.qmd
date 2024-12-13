@@ -36,16 +36,6 @@ covid <- read.csv("2020 US Covid Deaths.csv")
 
 ```
 
-```{r}
-#| label: fig-scratch-work
-#| echo: false
-#| eval: false
-
-# Any work done in R that should not be ran as part of the paper can go here.
-## EX: How many unique entires in a dataset.
-
-
-```
 
 # Introduction
 
@@ -194,7 +184,8 @@ This could suggest that viewers are better equipped to disregard poor headlines 
 While attempting to replicate the title effect would be interesting, for this experiment I will not be focusing on plot titles.
 In its place, each plot type will have a deceptive and control plot related to a controversial topic with a neutral headline for all plots.
 This is what I believe the experiment by @lauer is lacking in regards to my own research interests of the role bias plays in the perception of visualizations.
-Additionally, due to imaginary budget restrictions I will not be evaluating the audience's perception of bubble plots.
+Additionally, I will not be evaluating the audience's perception of bubble plots.
+Instead I will focus on the other three types.
 
 For a better understanding of how to conduct an experiment that measured bias I considered a study by @schwalbe2024.
 The study was focused on how American individuals from different backgrounds perceive headlines and corresponding articles.
@@ -257,9 +248,14 @@ kable(topics)
 
 Some examples of potential topics are shown in @fig-topics.
 Plots related minor league baseball teams and pet adoptions in a random U.S. town are unlikely to come with the prior biases that accompany climate change or gun violence visualizations.
-One key point related to some of the controversial takes is timing.
+One key point related to some of the controversial topics is timing.
 In terms of where answers fall on a political spectrum, opinions on a statistic like the unemployment rate change based on who is in power.
 This implies that the survey portion of the experiment should not take place between a national election and the inauguration of any new president or congress.
+
+Within each set there will be two cases of each plot type, each with a control and deceptive version.
+In the controversial set, one case will be on a topic that left-leaning individuals likely feel passionate about and the other will be the same for right-leaning individuals.
+For example one case may involve the increase of debt over the term of a Republican president and another may involve abortions performed by Planned Parenthood.
+Left-leaning individuals biases may make them more likely to believe the deceptive plot that exaggerates the debt in the former example, while the same can be said for right-leaning participants in the latter case.
 
 ### Plot Types
 
@@ -312,9 +308,7 @@ ggplot(RubberDucks, aes(x = Year, y = Sales)) +
 The line plots will follow the same guideline as the bar graphs.
 Control plots will start have the y-axis beginning at zero while deceptive plots will have an altered y-axis to make changes from one time point to another seem larger.
 An example of the deceptive plot can be found in @fig-fox, while @fig-line shown later on is a control plot.
-**VERIFY THIS.** Note, the data points will be plotted correctly for all line plots, unlike in @fig-fox.
-
-**DOUBLE CHECK THIS BEFORE SUBMITTING**
+Note, the data points will be plotted correctly for all line plots, unlike in @fig-fox.
 
 Pie charts on the other hand will manipulate the data from the control plots to create the corresponding deceptive plots.
 This is to achieve the effect of making sections of the pie chart bigger or smaller than they should be.
@@ -372,11 +366,18 @@ pie(deceptive_movies$Percentage,
 
 ```
 
+The complete sets of both controversial and noncontroversial plots can be found at [Plots-for-Experiment.pdf](https://github.com/RyanLalicker/STAT-892-Final/blob/main/Plots-for-Experiment.pdf).
+
 ### Plot Questions
 
-Questions about each plot will follow the format from @lauer where each participant will be asked to compare the difference or change from one state to another.  For the pie charts shown in @fig-pie this would be asking how many more romance movies were made than westerns.  For bar charts and line plots questions would follow the format in @fig-line.  This figure shows how a control line plot from the noncontroversial set would be presented.  The particpant is then asked how much change occured from one time point to another.
+Questions about each plot will follow the format from @lauer where each participant will be asked to compare the difference or change from one state to another.
+For the pie charts shown in @fig-pie this would be asking how many more romance movies were made than westerns.
+For bar charts and line plots questions would follow the format in @fig-line.
+This figure shows how a control line plot from the noncontroversial set would be presented.
+The participant is then asked how much change occurred from one time point to another.
 
 \newpage
+
 ```{r,,fig.pos="H"}
 #| echo: false
 #| eval: true
@@ -414,38 +415,103 @@ ggplot(box_office, aes(x = Year, y = Dollars, group = 1)) +
 
 
 ```
+
 ![Line plot example with a corresponding question. (@lauer, pg. 331)](question-format.png){#fig-line}
 
-After completing the perception question for each plot, participants will be asked to rate the three types of plots in order of preference.  Examples of noncontroversial control plots will be shown in case they are still unfamiliar with the names of the plot types after completing the majority of the survey.
+After completing the perception question for each plot, participants will be asked to rate the three types of plots in order of preference.
+Examples of noncontroversial control plots will be shown in case they are still unfamiliar with the names of the plot types after completing the majority of the survey.
 
+Previously it was said each of the two sets would have two graphs for each plot type.
+Since there are three plot types there will be a total of 12 plots shown and as many questions related to plots on the survey.
+Each question has a control and deceptive plot, so one version will be chosen at random.
+Instead of showing all of the noncontroversial plots and then all controversial ones, all twelve plots will be shown in a random order.
+Grouping the questions into sets is purely for the purpose of analyzing the data.
 
 ### Demographic Questions
 
 Before completing the survey participants will be asked to fill out a demographic questionnaire.
-The demographic variables will include gender, race, age group, region, income, education level, and political leaning.  
-The question on their political leaning will try to capture a participant's feeling on where their opinions fall on the political spectrum.
-The answers will be on a seven-point scale similar to the one by @schwalbe2024, except answers of less than or greater than four will correspond to a left or right political position respectively.  
+The demographic variables will include gender, race, age group, region, income, education level, political leaning, and whether they voted in the most recent election.
+The question on their political leaning will try to capture a participant's feeling on where their opinions generally fall on the political spectrum.
+The answers will be on a seven-point scale similar to the one by @schwalbe2024, except answers of less than or greater than four will correspond to a left or right political position respectively.
+This will be used to measure bias when evaluating plots belonging to the controversial set.
 
-The reason for including demographic information at the end of the survey instead of the beginning is related to the political leaning question.  If participants were asked this question prior to evaluating any plots, they may become aware of the survey's intent and answer questions differently than they otherwise would have.  By asking  demographic questions at the end of the survey the participants are more likely to provide genuine answers.
+The reason for including demographic information at the end of the survey instead of the beginning is related to the political leaning question.
+If participants were asked this question prior to evaluating any plots, they may become aware of the survey's intent and answer questions differently than they otherwise would have.
+By asking demographic questions at the end of the survey the participants are more likely to provide genuine answers.
 
-Note, all demographic questions and answer banks will be written with accessibility in mind.  Many questions will provide options for unlisted answers and a box for those who prefer not to answer.  This includes the political question.  While this question specifically could hinder the analysis in some ways, it way also allow us to evaluate apolitical participants along with those how fall on the political spectrum.
-
-### START HERE - Set Order
-
-**MUST WRITE THIS**
+Note, all demographic questions and answer banks will be written with accessibility in mind.
+Many questions will provide options for unlisted answers and a box for those who prefer not to answer.
+This includes the political question.
+While this question specifically could hinder the analysis in some ways, it way also allow us to evaluate apolitical participants along with those how fall on the political spectrum.
 
 ### Attention Checks
 
-This survey will be conducted online.  To ensure participants are actively taking the survey, attention check questions will be used.  An example from @check is shown in @fig-att.  The question tells the participant which answer to select and hopefully filters out any participants that are simply selecting answers without reading the questions or evaluating the plots.  
-
+This survey will be conducted online.
+To ensure participants are actively taking the survey, attention check questions will be used.
+An example from @check is shown in @fig-att.
+The question tells the participant which answer to select and hopefully filters out any participants that are simply selecting answers without reading the questions or evaluating the plots.
 
 ![Example of an attention check. (@check).](att-check.png){#fig-att width="4.5in"}
 
-Note, the format and timing of the attention checks are still non finalized.  Including unused plots with the checks may increase the odds of catching those who are not reading the questions.  Similarly, answers may be formatted to follow the number scale shown in @fig-line.
+Note, the format and timing of the attention checks are still non finalized.
+Including unused plots with the checks may increase the odds of catching those who are not reading the questions.
+Similarly, answers may be formatted to follow the number scale shown in @fig-line.
 
 # Data Collection
 
+The administering the survey will be done online.
+This allows us to consider participants from all over the country and not just those in the Lincoln, NE area.
+The questions will be given via a *Shiny* application in the R programming language.
+(@shiny).
+More specifically, the `shinysurveys` package will be used.
+While I have not been able to implement the survey yet, @fig-shiny provides a look at what the application can produce.
+(@med).
+The sliding scale on the left side would work well for the questions about the plots, and integrating plots from base R and `ggplot2` is possible.
+(@ggplot2).
+
+![Example of shiny output from @med.](shiny-example.png){#fig-shiny width="4in"}
+
+The first wave of participants will be recruited through Amazon Mechanical Turk (MTurk).
+MTurk is a crowd-sourcing marketplace that will find participants to take the survey.
+(@mturk). 
+The number of desired participants is unknown at this point, though I imagine it should be at least a few hundred.
+This will hopefully produce a diverse pool of participants.
+A second wave of participants will be recruited if too few people have taken the survey or the demographics of the first wave is not representative in any way.
+Quota sampling may be used in this event but will not be used for the first wave.
+
+The data returned from the experiment will need to have several variables besides the answers given by the participant.  The order of the plots for an individual participant will not be tracked since each person will see all 12 plots.  However, the version of each plot will be tracked.  Ideally, for each plot about half of the participants will see the control version and the other half will see the deceptive version.  Additionally each plot will be marked based on which set it comes from.  Furthermore, plots from the controversial set will need a variable to say whether they are designed to incite an overestimation from either left-leaning or right-leaning participants.
+
+The demographic questions will be more straightforward in that only the answers given by the participant will be taken.  For the question that asks participants to rank the three plot types, three variables will be created to represent each type and store the placement that type was given.   The data will also need to include results of the attention checks.
+
 # Analysis Plan
+
+```{r}
+#| label: fig-simulation
+#| echo: false
+#| eval: true
+
+n <- 300
+
+Participant_ID <- 1:n
+
+Political_Scale <- 
+
+Bar1_S1_type <- sample(c("Control", "Deceptive"), size = n, replace = TRUE)
+
+#Bar1_S1_answer <- 
+
+
+
+```
+
+One the data is collected there will be several steps to the analysis.  Much of it will be similar to the analysis methods used by @lauer.  Specifically, the plot in @fig-lauer-results provides a nice template for seeing the differences among the groups.  For this experiment we could compare the mean values of the two versions of plots while controlling for the set for each plot type.  This could be an early indication if there is a bias effect, but we would also need to consider the variance for each group as it is possible the controversial plots have a wider range of answers.  This could mean showing a visualization off the distributions for each option mentioned above.
+
+For measuring political bias we are first going to repeat what @schwalbe2024 and condense the political leaning answers.  The participants will be given answers on a seven-point scale, but we will set all answers less than four to "left", equal to four as "neutral", and greater than four to "right".  All participants that opted out of this question will be given the label "other".  With this new categorical variable we can create a similar series of plots to the ones discussed previously that allow us to see if there are any difference in the answers provided for the plot questions based on political leanings.  This includes seeing whether one group is more susceptible to deceptive plots.
+
+Another element of the analysis could be matching political leanings to the controversial set of plots.  For each participant we could set plots that have the same label as theirs to "concordant" as @schwalbe2024 did.  In cases of disagreement we could use discordant, while all other participants could be given an other category.  This would be another way to see how bias affects perception as it would show if people overestimate effects they want or believe to be true, regardless of political position.  Keeping in line with was was just discussed, seeing the performance of people who voted in the last election versus those who did not could be interesting as well.  
+
+The question regarding which plots people prefer will be analysed as well.  While there is research into how the public perceives the plot types already, this could add to it and help creators of visualizations in the future.  
+
 
 # Potential Flaws and Improvements
 
@@ -467,14 +533,281 @@ Note, the format and timing of the attention checks are still non finalized.  In
 #| echo: true
 #| eval: false
 
+# Add all necessary libraries
+library(ggplot2)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+# Datasets used
+covid <- read.csv("2020 US Covid Deaths.csv")
+
+# Code for Plots
+covid$End.Date <- as.Date(covid$End.Date, format = "%m/%d/%Y")
+
+covid_filtered <- covid %>% 
+  filter(End.Date >= "2020-02-09") %>%
+  filter(End.Date <= "2020-04-18")
+
+covid_filtered2 <- covid_filtered %>%
+  mutate(COVID.19.Deaths = if_else(End.Date < "2020-02-29", 
+                                   NA, COVID.19.Deaths))
+
+ggplot(covid_filtered, aes(x = End.Date, y = COVID.19.Deaths)) +
+  geom_line(color = "dodgerblue2", size = 1) + # Line properties
+  labs(
+    x = "Date in 2020",
+    y = "COVID-19 Deaths"
+  ) +
+  theme_minimal()
+
+ggplot(covid_filtered2, aes(x = End.Date, y = log(COVID.19.Deaths))) +
+  geom_line(color = "dodgerblue2", size = 1) + # Line properties
+  labs(
+    x = "Date in 2020",
+    y = "Log of COVID-19 Deaths"
+  ) +
+  ylim(0, 12) +
+  theme_minimal()
+
+topics <- data.frame(
+  Noncontroversial = c("Movies from a particular studio in a year",
+                       "Graduation rates at public universities", 
+                       "Ticket sales of  minor league baseball team",
+                       "Adoption rates at a pet shelter"),
+  Controversial = c("Changes in unemployment rate",
+                    "Government spending",
+                    "Changes in average temperatures over time",
+                    "Gun deaths in a major city")
+)
+
+kable(topics)
 
 
+RubberDucks <- data.frame(
+  Year = c("2018", "2023"),
+  Sales = c(12000, 13500)
+)
+
+ggplot(RubberDucks, aes(x = Year, y = Sales)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", 
+           width = 0.7) + coord_cartesian(ylim = c(0, 15000)) +
+  labs(title = "Ticket Sales for the Rockford Peaches Baseball Team",
+       x = "Year",
+       y = "Ticket Sales") +
+  theme_minimal() + theme(panel.grid = element_blank())
+
+ggplot(RubberDucks, aes(x = Year, y = Sales)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", 
+           width=0.7) + coord_cartesian(ylim = c(11500, 14000)) +
+  labs(title = "Ticket Sales for the Rockford Peaches Baseball Team",
+       x = "Year",
+       y = "Ticket Sales") +
+  theme_minimal() + theme(panel.grid = element_blank())
+
+
+control_movies <- data.frame(
+  Genre = c("Action", 
+            "Romance",
+            "Thriller", 
+            "Sci-Fi", 
+            "Western", 
+            "Epic"),
+  Percentage = c(28, 23, 22, 
+                 13, 10, 4)
+)
+
+deceptive_movies <- data.frame(
+  Genre = c("Action", 
+            "Romance",
+            "Thriller", 
+            "Sci-Fi", 
+            "Western", 
+            "Epic"),
+  Percentage = c(35, 29, 27, 
+                 5, 3, 1)
+)
+
+pie(control_movies$Percentage, 
+    labels = paste(control_movies$Genre, 
+                   " (", control_movies$Percentage, "%)", sep = ""), 
+    main = "Type of Movies by Acme Studios",
+    col = topo.colors(nrow(control_movies)))
+
+pie(deceptive_movies$Percentage, 
+    labels = paste(deceptive_movies$Genre, 
+                   " (", control_movies$Percentage, "%)", sep = ""), 
+    main = "Type of Movies by Acme Studios",
+    col = topo.colors(nrow(deceptive_movies)))
+
+
+box_office <- data.frame(
+  Year = c("2006", "2007",
+           "2008", "2009",
+           "2010", "2011",
+           "2012", "2013",
+           "2014", "2015", "2016"),
+  Dollars = c(9.2, 9.6,
+              9.5, 10.5,
+              10.6, 10.2,
+              10.8, 10.9,
+              10.4, 11.1,
+              11.4)
+)
+
+ggplot(box_office, aes(x = Year, y = Dollars, group = 1)) +
+  geom_line(color = "dodgerblue2", size = 1) +  
+  geom_text(aes(label = Dollars), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Box Office Revenue for Acme Studios",
+       x = "Year",
+       y = "Revenue (in billions of dollars)") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(0, 13) + 
+  theme(panel.grid = element_blank())
+
+# Attempt at simulating a dataset.
+n <- 300
 ```
 
 \newpage
 
 # Appendix B: AI Prompts and Answers
 
-**Prompt:** How many R's are in the word strawberry?
+## Used responses
 
-**Answer:** The word strawberry contains three R's.
+**Prompt:** What color options do I have for this pie chart?  (code was copied to prompt but I chose not to include it here)
+
+**Answer:** You can use built-in color palettes like `rainbow`, `heat.colors`, `terrain.colors`, or `topo.colors`
+
+
+**Prompt:** Can you make a `ggplot2` line graph with this? (I gave it my code with a data frame)
+
+**Answer:**
+Code returned:
+```{r}
+#| label: appendix-B-1
+#| echo: true
+#| eval: false
+
+ggplot(box_office, aes(x = Year, y = Dollars, group = 1)) +
+  geom_line(color = "blue", size = 1) +  # Line settings
+  geom_point(color = "red", size = 2) +  # Add points for emphasis
+  labs(title = "Box Office Revenue Over Years",
+       x = "Year",
+       y = "Revenue (in billions)") +
+  theme_minimal() +  # Clean theme
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels
+
+```
+
+**Follow-Up Question:** Instead of red points can I print the value of each number?
+
+**Updated Answer:** replace ```geom_point(color = "red", size = 2)``` with ```geom_text(aes(label = Dollars), vjust = -0.5, size = 3, color = "black")``` in previous code.
+
+
+## Unused Responses
+
+**Prompt:** I want to simulate a data set.  The first variable is a participant ID which can just be integers in order.  The second should be either deceptive or control with a 50-50 shot for either.  The third variable should be an integer from 1 to 6 with a mean of 2.39.  How would I make this in R?
+
+**Answer:**
+Code returned:
+```{r}
+#| label: appendix-B-2
+#| echo: true
+#| eval: false
+
+n_participants <- 100  # Adjust this number as needed
+
+# Create a participant ID column
+Participant_ID <- 1:n_participants
+
+# Generate the second variable: "Deceptive" or "Control" with a 50-50 chance
+Condition <- sample(c("Deceptive", "Control"), 
+                    size = n_participants, replace = TRUE)
+
+
+# Define the target probabilities to achieve a mean of 2.39
+# Probabilities are set based on their contribution to the mean
+# These weights were calculated to give a mean close to 2.39
+probabilities <- c(0.45, 0.20, 0.15, 0.10, 0.05, 0.05)
+
+# Generate the variable
+Random_Integer <- sample(1:6, size = n_participants, replace = TRUE, 
+                         prob = probabilities)
+
+# Combine into a data frame
+simulated_data <- data.frame(
+  Participant_ID = Participant_ID,
+  Condition = Condition,
+  Random_Integer = Random_Integer
+)
+
+```
+
+
+**Prompt:** Given this code (code not included here - see Figure 8 in [Plots-for-Experiment.pdf](https://github.com/RyanLalicker/STAT-892-Final/blob/main/Plots-for-Experiment.pdf)) how do I make a shiny application that asks "How much did the global temperature rise from 1950 to 2020?"
+
+**Answer:** 
+Code Returned - Did not run
+```{r}
+#| label: appendix-B-3
+#| echo: true
+#| eval: false
+library(shiny)
+library(ggplot2)
+
+# Data
+temp <- data.frame(
+  year = c("1950", "1960", "1970", "1980", "1990", "2000", "2010", "2020"),
+  temp = c(51.6, 51.9, 51.6, 52.8, 53.4, 53.7, 52.7, 55.7)
+)
+
+# UI
+ui <- fluidPage(
+  titlePanel("Global Temperature Rise from 1950 to 2020"),
+  sidebarLayout(
+    sidebarPanel(
+      p("Question: How much did the global temperature rise from 
+        1950 to 2020?"),
+      actionButton("show_answer", "Show Answer")
+    ),
+    mainPanel(
+      plotOutput("tempPlot"),
+      uiOutput("answer")
+    )
+  )
+)
+
+# Server
+server <- function(input, output) {
+  output$tempPlot <- renderPlot({
+    ggplot(temp, aes(x = year, y = temp, group = 1)) +
+      geom_line(color = "maroon", size = 1) +
+      geom_text(aes(label = temp), 
+                vjust = -0.5, size = 4, color = "black") +
+      labs(title = "Average Yearly Temperature",
+           x = "Year",
+           y = "Temperature (Fahrenheit)") +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+      ylim(50, 56) +
+      theme(panel.grid = element_blank())
+  })
+
+  output$answer <- renderUI({
+    req(input$show_answer)  # Wait for button click
+    temp_rise <- temp$temp[temp$year == "2020"] 
+    - temp$temp[temp$year == "1950"]
+    tagList(
+      h4("Answer:"),
+      p(sprintf("The global temperature rose by %.1f°F 
+                from 1950 to 2020.", temp_rise))
+    )
+  })
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+```
