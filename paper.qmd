@@ -68,7 +68,7 @@ This diminishes the effect of the visualization.
 
 In this paper I will propose an experiment with the intent to account for several facets of audience interactions with plots.
 The experiment will measure how a general audience perceives biased plots versus more neutral plots while measuring performance across different plot types and topics.
-The files used in the paper can be found [here](https://github.com/RyanLalicker/STAT-892-Final).
+The files used in the paper can be found at the project's [GitHub page](https://github.com/RyanLalicker/STAT-892-Final).
 
 # Motivation
 
