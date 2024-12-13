@@ -10,6 +10,7 @@ format:
     fig-align: center
     fig-width: 6
     fig-height: 4
+bibliography: references.bib
 editor: 
   markdown: 
     wrap: sentence
@@ -31,7 +32,9 @@ library(kableExtra)
 
 This document is contains the plots that will (or could) be used in the experiment for the STAT 892 final paper.  For more information on this experiment see the project's [GitHub page](https://github.com/RyanLalicker/STAT-892-Final).
 
+Note, the data for the noncontroversial plots is made up, but the data for the controversial plots is sourced.  The *References* section will lead you to the original data.  Also, the *R Code Used* section shows how each plot was created.
 
+\newpage
 # Noncontroversial Plots
 
 ## Bar Graphs
@@ -106,6 +109,7 @@ ggplot(shakes, aes(x = Year, y = Sold)) +
 
 **Question:** How much did milk shake sales increase from January to July?
 
+\newpage
 ## Pie Charts
 
 ```{r,,fig.pos="H"}
@@ -196,7 +200,7 @@ pie(deceptive_animals,
 
 **Question:** How many more cats were adopted than dogs?
 
-
+\newpage
 ## Line Graphs
 
 
@@ -309,7 +313,7 @@ ggplot(grad_rates, aes(x = Year, y = Percentage, group = 1)) +
 
 **Question:** What was the increase in graduation rates from 1990 to 1997?
 
-
+\newpage
 # Controversial Plots
 
 ## Bar Graphs
@@ -318,38 +322,77 @@ ggplot(grad_rates, aes(x = Year, y = Percentage, group = 1)) +
 #| label: fig-bar-Con1
 #| echo: false
 #| eval: true
-#| fig-cap: ""
+#| fig-cap: "Data from @debt"
 #| layout-ncol: 2
 #| fig-subcap: 
 #|  - "Control"
 #|  - "Deceptive"
 #| fig-width: 6
-#| fig-height: 4
+#| fig-height: 3.75
+
+debt <- data.frame(
+  Year = c("2021", "2024"),
+  debt = c(21.593, 26.966)
+)
+
+ggplot(debt, aes(x = Year, y = debt)) +
+  geom_bar(stat = "identity", color = "dodgerblue2", fill = "dodgerblue2", width = 0.7) + coord_cartesian(ylim = c(0, 30)) +
+  labs(title = "National Debt",
+       x = "Year",
+       y = "Debt (in Trillions of Dollars)") +
+  theme_minimal() + theme(panel.grid = element_blank())
+
+ggplot(debt, aes(x = Year, y = debt)) +
+  geom_bar(stat = "identity", color = "dodgerblue2", fill = "dodgerblue2", width = 0.7) + coord_cartesian(ylim = c(20, 28)) +
+  labs(title = "U.S. National Debt at the Start of the Year",
+       x = "Year",
+       y = "Debt (in Trillions of Dollars)") +
+  theme_minimal() + theme(panel.grid = element_blank())
 
 ```
 
-**Question:**
+**Question:** How much did the U.S. national debt increase from 2021 to 2024?
 
-**Lean:**
+**Lean:** Right - Rising debt during Joe Biden's term is more likely to be overstated by right-leaning individuals.
 
 ```{r,,fig.pos="H"}
-#| label: fig-bar-Con1
+#| label: fig-bar-Con2
 #| echo: false
 #| eval: true
-#| fig-cap: ""
+#| fig-cap: "Data from @debt"
 #| layout-ncol: 2
 #| fig-subcap: 
 #|  - "Control"
 #|  - "Deceptive"
 #| fig-width: 6
-#| fig-height: 4
+#| fig-height: 3.75
+
+debt <- data.frame(
+  Year = c("2017", "2020"),
+  debt = c(14.434, 17.170)
+)
+
+ggplot(debt, aes(x = Year, y = debt)) +
+  geom_bar(stat = "identity", color = "firebrick", fill = "firebrick", width = 0.7) + coord_cartesian(ylim = c(0, 20)) +
+  labs(title = "National Debt",
+       x = "Year",
+       y = "Debt (in Trillions of Dollars)") +
+  theme_minimal() + theme(panel.grid = element_blank())
+
+ggplot(debt, aes(x = Year, y = debt)) +
+  geom_bar(stat = "identity", color = "firebrick", fill = "firebrick", width = 0.7) + coord_cartesian(ylim = c(14, 17)) +
+  labs(title = "U.S. National Debt at the Start of the Year",
+       x = "Year",
+       y = "Debt (in Trillions of Dollars)") +
+  theme_minimal() + theme(panel.grid = element_blank())
 
 ```
 
-**Question:**
+**Question:** How much did the U.S. national debt increase from 2017 to 2020?
 
-**Lean:**
+**Lean:** Left - Rising debt during Donald Trump's first term is more likely to be overstated by left-leaning individuals.
 
+\newpage
 ## Pie Charts
 
 ```{r,,fig.pos="H"}
@@ -362,7 +405,9 @@ ggplot(grad_rates, aes(x = Year, y = Percentage, group = 1)) +
 #|  - "Control"
 #|  - "Deceptive"
 #| fig-width: 6
-#| fig-height: 4
+#| fig-height: 3.75
+
+
 
 ```
 
@@ -380,7 +425,7 @@ ggplot(grad_rates, aes(x = Year, y = Percentage, group = 1)) +
 #|  - "Control"
 #|  - "Deceptive"
 #| fig-width: 6
-#| fig-height: 4
+#| fig-height: 3.75
 
 ```
 
@@ -389,43 +434,124 @@ ggplot(grad_rates, aes(x = Year, y = Percentage, group = 1)) +
 
 **Lean:**
 
+\newpage
 ## Line Graphs
 
 ```{r,,fig.pos="H"}
 #| label: fig-line-Con1
 #| echo: false
 #| eval: true
-#| fig-cap: ""
+#| fig-cap: "Data from @weather"
 #| layout-ncol: 2
 #| fig-subcap: 
 #|  - "Control"
 #|  - "Deceptive"
 #| fig-width: 6
-#| fig-height: 4
+#| fig-height: 3.75
+
+temp <- data.frame(
+  year = c("1950", "1960",
+           "1970", "1980",
+           "1990", "2000",
+           "2010", "2020"),
+  temp = c(51.6, 51.9,
+           51.6, 52.8,
+           53.4, 53.7,
+           52.7, 55.7)
+)
+
+
+ggplot(temp, aes(x = year, y = temp, group = 1)) +
+  geom_line(color = "maroon", size = 1) +  
+  geom_text(aes(label = temp), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Average Yearly Temperature",
+       x = "Year",
+       y = "Temperature (Fahrenheit)") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(0, 60) + 
+  theme(panel.grid = element_blank())
+
+
+ggplot(temp, aes(x = year, y = temp, group = 1)) +
+  geom_line(color = "maroon", size = 1) +  
+  geom_text(aes(label = temp), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Average Yearly Temperature",
+       x = "Year",
+       y = "Temperature (Fahrenheit)") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(50, 56) + 
+  theme(panel.grid = element_blank())
 
 ```
 
-**Question:**
+**Question:** How much did the global temperature rise from 1950 to 2020?
 
-**Lean:**
+**Lean:** Left - Expect left-leaning individuals to possibly overstate the rise in their answers.
 
 ```{r,,fig.pos="H"}
 #| label: fig-line-Con2
 #| echo: false
 #| eval: true
-#| fig-cap: ""
+#| fig-cap: "Data from @unrate2024"
 #| layout-ncol: 2
 #| fig-subcap: 
 #|  - "Control"
 #|  - "Deceptive"
 #| fig-width: 6
-#| fig-height: 4
+#| fig-height: 3.75
+
+unemp <- data.frame(
+  Month = c("Jan", "Feb", "Mar",
+           "Apr", "May", "Jun",
+           "Jul"),
+  rate = c(3.7, 3.9, 3.8, 3.9,
+           4, 4.1, 4.3)
+)
+
+unemp$Month <- factor(unemp$Month, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"))
+
+
+ggplot(unemp, aes(x = Month, y = rate, group = 1)) +
+  geom_line(color = "dodgerblue4", size = 1) +  
+  geom_text(aes(label = rate), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Unemployment Rate by Month in 2024",
+       x = "Year",
+       y = "Unemployment Rate") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(0, 7) + 
+  theme(panel.grid = element_blank())
+
+ggplot(unemp, aes(x = Month, y = rate, group = 1)) +
+  geom_line(color = "dodgerblue4", size = 1) +  
+  geom_text(aes(label = rate), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Unemployment Rate by Month in 2024",
+       x = "Year",
+       y = "Unemployment Rate") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(3.5, 4.5) + 
+  theme(panel.grid = element_blank())
 
 ```
 
-**Question:**
+**Question:** How much did the employment rate rise in the first seven months of 2023?
 
-**Lean:**
+**Lean:** Right - Expect right leaning individuals to overstate rising unemployment rate during Joe Biden's presidency.
+
+
+\newpage
+
+# References
+
+::: {#refs}
+:::
 
 \newpage
 
