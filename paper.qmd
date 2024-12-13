@@ -323,7 +323,7 @@ Note, the data points will be plotted correctly for all line plots, unlike in @f
 #| label: fig-pie
 #| echo: false
 #| eval: true
-#| fig-cap: ""
+#| fig-cap: "Example of a pie chart related to the distribution of movies by genre for a fictional movie studio."
 #| layout-ncol: 2
 #| fig-subcap: 
 #|  - "Control"
@@ -341,13 +341,29 @@ control_movies <- data.frame(
   Percentage = c(28, 23, 22, 
                  13, 10, 4)
 )
-28+23+22+13+10
-deceptive_movies <- data.frame{
-  Genre = c("Action", "Romance", "Thriller", "Sci-Fi", "Western", "Epic")
-  Percentage = c(39, 28, 25, 5, 2, 1)
-}
 
+deceptive_movies <- data.frame(
+  Genre = c("Action", 
+            "Romance",
+            "Thriller", 
+            "Sci-Fi", 
+            "Western", 
+            "Epic"),
+  Percentage = c(35, 29, 27, 
+                 5, 3, 1)
+)
 
+pie(control_movies$Percentage, 
+    labels = paste(control_movies$Genre, 
+                   " (", control_movies$Percentage, "%)", sep = ""), 
+    main = "Type of Movies by Acme Studios",
+    col = topo.colors(nrow(control_movies)))
+
+pie(deceptive_movies$Percentage, 
+    labels = paste(deceptive_movies$Genre, 
+                   " (", control_movies$Percentage, "%)", sep = ""), 
+    main = "Type of Movies by Acme Studios",
+    col = topo.colors(nrow(deceptive_movies)))
 
 
 ```
