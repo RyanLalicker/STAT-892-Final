@@ -88,14 +88,14 @@ shakes <- data.frame(
 )
 
 ggplot(shakes, aes(x = Year, y = Sold)) +
-  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", width = 0.7) + coord_cartesian(ylim = c(0, 5000)) +
+  geom_bar(stat = "identity", color = "#eb735a", fill = "#eb735a", width = 0.7) + coord_cartesian(ylim = c(0, 5000)) +
   labs(title = "Number of Milk Shakes Sold per month at NYC Store",
        x = "Month",
        y = "Milk Shakes Sold") +
   theme_minimal() + theme(panel.grid = element_blank())
 
 ggplot(shakes, aes(x = Year, y = Sold)) +
-  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", width = 0.7) + coord_cartesian(ylim = c(2800, 3500)) +
+  geom_bar(stat = "identity", color = "#eb735a", fill = "#eb735a", width = 0.7) + coord_cartesian(ylim = c(2800, 3500)) +
   labs(title = "Number of Milk Shakes Sold per month at NYC Store",
        x = "Month",
        y = "Milk Shakes Sold") +
@@ -104,7 +104,7 @@ ggplot(shakes, aes(x = Year, y = Sold)) +
 
 ```
 
-**Question:**
+**Question:** How much did milk shake sales increase from January to July?
 
 ## Pie Charts
 
@@ -173,9 +173,32 @@ pie(deceptive_movies$Percentage,
 #| fig-width: 6
 #| fig-height: 4
 
+animals <- data.frame(
+  animals = c("Cats", "Dogs", "Ferrets",
+              "Rabbits", "Other"),
+  percentage = c(40, 30, 12, 15, 3)
+)
+
+deceptive_animals <- c(49, 30, 9, 11, 3)
+
+pie(animals$percentage, 
+    labels = paste(animals$animals, 
+                   " (", animals$percentage, "%)", sep = ""), 
+    main = "Type of Animals Adopted Through an Animal Shelter",)
+
+pie(deceptive_animals, 
+    labels = paste(animals$animals, 
+                   " (", animals$percentage, "%)", sep = ""), 
+    main = "Type of Animals Adopted Through an Animal Shelter",)
+
+
 ```
 
-**Question:**
+**Question:** How many more cats were adopted than dogs?
+
+
+## Line Graphs
+
 
 ```{r,,fig.pos="H"}
 #| label: fig-line-NC1
@@ -188,8 +211,6 @@ pie(deceptive_movies$Percentage,
 #|  - "Deceptive"
 #| fig-width: 6
 #| fig-height: 4
-
-## Line Graphs
 
 
 box_office <- data.frame(
@@ -248,9 +269,45 @@ ggplot(box_office, aes(x = Year, y = Dollars, group = 1)) +
 #| fig-width: 6
 #| fig-height: 4
 
+grad_rates<- data.frame(
+  Year = c("1990", "1991",
+           "1992", "1993",
+           "1994", "1995",
+           "1996", "1997"),
+  Percentage = c(60.2, 61.6,
+              59.5, 60.5,
+              61.6, 61.2,
+              62.8, 63.9)
+)
+
+
+ggplot(grad_rates, aes(x = Year, y = Percentage, group = 1)) +
+  geom_line(color = "darkgreen", size = 1) +  
+  geom_text(aes(label = sprintf("%.1f%%", Percentage)), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Faber College Graduation Rates",
+       x = "Year",
+       y = "Graduation Rate") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(0, 100) + 
+  theme(panel.grid = element_blank())
+
+ggplot(grad_rates, aes(x = Year, y = Percentage, group = 1)) +
+  geom_line(color = "darkgreen", size = 1) +  
+  geom_text(aes(label = sprintf("%.1f%%", Percentage)), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Faber College Graduation Rates",
+       x = "Year",
+       y = "Graduation Rate") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(59, 64) + 
+  theme(panel.grid = element_blank())
+
 ```
 
-**Question:**
+**Question:** What was the increase in graduation rates from 1990 to 1997?
 
 
 # Controversial Plots
