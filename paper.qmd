@@ -4,7 +4,7 @@ author: Ryan Lalicker
 date: today
 date-format: long
 abstract: |
-  WRITE ABSTRACT BEFORE SUBMITTING  (@test) (@lauer)
+  This paper outlines an experiment designed to measure how people perceive information provided in plots and whether political bias affects their performance. This experiment shows participants a mix of plots with some being political or controversial topics, while others are more general.  Each plot has a control version and a deceptive version.  This allows us to evaluate how an audience percieves poor or misleading graphics compared to better ones.
 execute: 
   echo: false
   warning: false
