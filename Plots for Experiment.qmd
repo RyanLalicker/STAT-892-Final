@@ -1,0 +1,621 @@
+---
+title: "Plots Used for STAT 892 Experiment"
+author: Ryan Lalicker
+execute: 
+  echo: false
+  warning: false
+columns: 2
+format:
+  pdf:
+    fig-align: center
+    fig-width: 6
+    fig-height: 4
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r}
+#| label: fig-set-up
+#| echo: false
+#| eval: true
+
+library(ggplot2)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+```
+
+# Introduction
+
+This document is contains the plots that will (or could) be used in the experiment for the STAT 892 final paper.  For more information on this experiment see the project's [GitHub page](https://github.com/RyanLalicker/STAT-892-Final).
+
+
+# Noncontroversial Plots
+
+## Bar Graphs
+
+```{r,,fig.pos="H"}
+#| label: fig-bar-NC1
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+RubberDucks <- data.frame(
+  Year = c("2018", "2023"),
+  Sales = c(12000, 13500)
+)
+
+ggplot(RubberDucks, aes(x = Year, y = Sales)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", width = 0.7) + coord_cartesian(ylim = c(0, 15000)) +
+  labs(title = "Ticket Sales for the Rockford Peaches Baseball Team",
+       x = "Year",
+       y = "Ticket Sales") +
+  theme_minimal() + theme(panel.grid = element_blank())
+
+ggplot(RubberDucks, aes(x = Year, y = Sales)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", width=0.7) + coord_cartesian(ylim = c(11500, 14000)) +
+  labs(title = "Ticket Sales for the Rockford Peaches baseball Team",
+       x = "Year",
+       y = "Ticket Sales") +
+  theme_minimal() + theme(panel.grid = element_blank())
+```
+
+**Question:** How large was the increase in ticket sales from 2018 to 2023?
+
+```{r,,fig.pos="H"}
+#| label: fig-bar-NC2
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+shakes <- data.frame(
+  Year = c("January", "July"),
+  Sold = c(3000, 3450)
+)
+
+ggplot(shakes, aes(x = Year, y = Sold)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", width = 0.7) + coord_cartesian(ylim = c(0, 5000)) +
+  labs(title = "Number of Milk Shakes Sold per month at NYC Store",
+       x = "Month",
+       y = "Milk Shakes Sold") +
+  theme_minimal() + theme(panel.grid = element_blank())
+
+ggplot(shakes, aes(x = Year, y = Sold)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", width = 0.7) + coord_cartesian(ylim = c(2800, 3500)) +
+  labs(title = "Number of Milk Shakes Sold per month at NYC Store",
+       x = "Month",
+       y = "Milk Shakes Sold") +
+  theme_minimal() + theme(panel.grid = element_blank())
+
+
+```
+
+**Question:**
+
+## Pie Charts
+
+```{r,,fig.pos="H"}
+#| label: fig-pie-NC1
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+control_movies <- data.frame(
+  Genre = c("Action", 
+            "Romance",
+            "Thriller", 
+            "Sci-Fi", 
+            "Western", 
+            "Epic"),
+  Percentage = c(28, 23, 22, 
+                 13, 10, 4)
+)
+
+deceptive_movies <- data.frame(
+  Genre = c("Action", 
+            "Romance",
+            "Thriller", 
+            "Sci-Fi", 
+            "Western", 
+            "Epic"),
+  Percentage = c(35, 29, 27, 
+                 5, 3, 1)
+)
+
+pie(control_movies$Percentage, 
+    labels = paste(control_movies$Genre, 
+                   " (", control_movies$Percentage, "%)", sep = ""), 
+    main = "Type of Movies by Acme Studios",
+    col = topo.colors(nrow(control_movies)))
+
+pie(deceptive_movies$Percentage, 
+    labels = paste(deceptive_movies$Genre, 
+                   " (", control_movies$Percentage, "%)", sep = ""), 
+    main = "Type of Movies by Acme Studios",
+    col = topo.colors(nrow(deceptive_movies)))
+
+
+```
+
+
+**Question:** How many more romance movies were made than westerns?
+
+
+```{r,,fig.pos="H"}
+#| label: fig-pie-NC2
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+**Question:**
+
+```{r,,fig.pos="H"}
+#| label: fig-line-NC1
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+## Line Graphs
+
+
+box_office <- data.frame(
+  Year = c("2006", "2007",
+           "2008", "2009",
+           "2010", "2011",
+           "2012", "2013",
+           "2014", "2015", "2016"),
+  Dollars = c(9.2, 9.6,
+              9.5, 10.5,
+              10.6, 10.2,
+              10.8, 10.9,
+              10.4, 11.1,
+              11.4)
+)
+
+ggplot(box_office, aes(x = Year, y = Dollars, group = 1)) +
+  geom_line(color = "dodgerblue2", size = 1) +  
+  geom_text(aes(label = Dollars), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Box Office Revenue for Acme Studios",
+       x = "Year",
+       y = "Revenue (in billions of dollars)") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(0, 13) + 
+  theme(panel.grid = element_blank())
+
+ggplot(box_office, aes(x = Year, y = Dollars, group = 1)) +
+  geom_line(color = "dodgerblue2", size = 1) +  
+  geom_text(aes(label = Dollars), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Box Office Revenue for Acme Studios",
+       x = "Year",
+       y = "Revenue (in billions of dollars)") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(9, 11.6) + 
+  theme(panel.grid = element_blank())
+
+```
+
+
+**Question:**
+
+
+```{r,,fig.pos="H"}
+#| label: fig-line-NC2
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+**Question:**
+
+
+# Controversial Plots
+
+## Bar Graphs
+
+```{r,,fig.pos="H"}
+#| label: fig-bar-Con1
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+**Question:**
+
+**Lean:**
+
+```{r,,fig.pos="H"}
+#| label: fig-bar-Con1
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+**Question:**
+
+**Lean:**
+
+## Pie Charts
+
+```{r,,fig.pos="H"}
+#| label: fig-pie-Con1
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+**Question:**
+
+**Lean:**
+
+```{r,,fig.pos="H"}
+#| label: fig-pie-Con2
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+
+**Question:**
+
+**Lean:**
+
+## Line Graphs
+
+```{r,,fig.pos="H"}
+#| label: fig-line-Con1
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+**Question:**
+
+**Lean:**
+
+```{r,,fig.pos="H"}
+#| label: fig-line-Con2
+#| echo: false
+#| eval: true
+#| fig-cap: ""
+#| layout-ncol: 2
+#| fig-subcap: 
+#|  - "Control"
+#|  - "Deceptive"
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+**Question:**
+
+**Lean:**
+
+\newpage
+
+# R Code Used
+
+## Libraries Used
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(ggplot2)
+
+```
+
+## Noncontroversial Plots
+
+### Bar Graphs
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+RubberDucks <- data.frame(
+  Year = c("2018", "2023"),
+  Sales = c(12000, 13500)
+)
+
+ggplot(RubberDucks, aes(x = Year, y = Sales)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", width = 0.7) 
++ coord_cartesian(ylim = c(0, 15000)) +
+  labs(title = "Ticket Sales for the Rockford Peaches baseball Team",
+       x = "Year",
+       y = "Ticket Sales") +
+  theme_minimal() + theme(panel.grid = element_blank())
+
+ggplot(RubberDucks, aes(x = Year, y = Sales)) +
+  geom_bar(stat = "identity", color = "skyblue", fill = "skyblue", width=0.7) 
++ coord_cartesian(ylim = c(11500, 14000)) +
+  labs(title = "Ticket Sales for the Rockford Peaches baseball Team",
+       x = "Year",
+       y = "Ticket Sales") +
+  theme_minimal() + theme(panel.grid = element_blank())
+```
+
+
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-subcap: 
+#| fig-width: 6
+#| fig-height: 4
+
+
+```
+
+
+
+### Pie Charts
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+control_movies <- data.frame(
+  Genre = c("Action", 
+            "Romance",
+            "Thriller", 
+            "Sci-Fi", 
+            "Western", 
+            "Epic"),
+  Percentage = c(28, 23, 22, 
+                 13, 10, 4)
+)
+
+deceptive_movies <- data.frame(
+  Genre = c("Action", 
+            "Romance",
+            "Thriller", 
+            "Sci-Fi", 
+            "Western", 
+            "Epic"),
+  Percentage = c(35, 29, 27, 
+                 5, 3, 1)
+)
+
+pie(control_movies$Percentage, 
+    labels = paste(control_movies$Genre, 
+                   " (", control_movies$Percentage, "%)", sep = ""), 
+    main = "Type of Movies by Acme Studios",
+    col = topo.colors(nrow(control_movies)))
+
+pie(deceptive_movies$Percentage, 
+    labels = paste(deceptive_movies$Genre, 
+                   " (", control_movies$Percentage, "%)", sep = ""), 
+    main = "Type of Movies by Acme Studios",
+    col = topo.colors(nrow(deceptive_movies)))
+
+
+```
+
+
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+### Line Graphs 
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+
+box_office <- data.frame(
+  Year = c("2006", "2007",
+           "2008", "2009",
+           "2010", "2011",
+           "2012", "2013",
+           "2014", "2015", "2016"),
+  Dollars = c(9.2, 9.6,
+              9.5, 10.5,
+              10.6, 10.2,
+              10.8, 10.9,
+              10.4, 11.1,
+              11.4)
+)
+
+ggplot(box_office, aes(x = Year, y = Dollars, group = 1)) +
+  geom_line(color = "dodgerblue2", size = 1) +  
+  geom_text(aes(label = Dollars), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Box Office Revenue for Acme Studios",
+       x = "Year",
+       y = "Revenue (in billions of dollars)") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(0, 13) + 
+  theme(panel.grid = element_blank())
+
+ggplot(box_office, aes(x = Year, y = Dollars, group = 1)) +
+  geom_line(color = "dodgerblue2", size = 1) +  
+  geom_text(aes(label = Dollars), 
+            vjust = -0.5, size = 4, color = "black") + 
+  labs(title = "Box Office Revenue for Acme Studios",
+       x = "Year",
+       y = "Revenue (in billions of dollars)") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  ylim(9, 11.6) + 
+  theme(panel.grid = element_blank())
+
+```
+
+
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+
+
+## Controversial Plots
+
+### Bar Graphs
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+
+
+### Pie Charts
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+
+### Line Graphs
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+```
+
+```{r,,fig.pos="H"}
+#| echo: true
+#| eval: false
+#| layout-ncol: 2
+#| fig-width: 6
+#| fig-height: 4
+
+```
