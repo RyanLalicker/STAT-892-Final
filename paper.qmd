@@ -84,7 +84,7 @@ This is likely due to a lack of experience with log functions and illustrates ho
 #| layout-ncol: 2
 #| fig-subcap: 
 #|  - "Linear scale"
-#|  - "logarithmic scale"
+#|  - "Logarithmic scale"
 #| fig-width: 6
 #| fig-height: 4
 
