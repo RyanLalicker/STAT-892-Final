@@ -4,7 +4,7 @@ author: Ryan Lalicker
 date: today
 date-format: long
 abstract: |
-  This paper outlines an experiment designed to measure how people perceive information provided in plots and whether political bias affects their performance. This experiment shows participants a mix of plots with some being political or controversial topics, while others are more general.  Each plot has a control version and a deceptive version.  This allows us to evaluate how an audience percieves poor or misleading graphics compared to better ones.
+  This paper outlines an experiment designed to measure how people perceive information provided in plots and whether political bias affects this perception. This experiment shows participants a mix of plots with some being political or controversial topics, while others are more general.  Each plot has a control version and a deceptive version.  This allows us to evaluate how an audience perceives poor or misleading graphics compared to better ones.
 execute: 
   echo: false
   warning: false
@@ -40,9 +40,9 @@ covid <- read.csv("2020 US Covid Deaths.csv")
 # Introduction
 
 Many areas of research rely on visualizations to express their findings to both experts in the field and the general public alike.
-This applies to other areas of life as well such as news, entertainment, and public health that reach the largest audience possible with easily-digestible visualizations and quick explanations over in-depth, domain specific reports.
+This applies to other areas of life as well such as news, entertainment, and public health that reach the largest audience possible with easily-digestible visualizations and quick explanations over in-depth, domain-specific reports.
 (@Unwin2020Why).
-Although this practice goes back many centuries (@firstplot), in today's fast moving-technology driven world creating visualizations has never been easier.
+Although this practice goes back many centuries (@firstplot), in today's fast-moving, technology driven world creating visualizations has never been easier.
 Yet, visualizations need to be effective in order to have the desired outcome of educating the public.
 
 A key issue in creating effective visualizations is that of bias.
@@ -80,7 +80,7 @@ This is likely due to a lack of experience with log functions and illustrates ho
 #| label: fig-covid
 #| echo: false
 #| eval: true
-#| fig-cap: "COVID-19 deaths in the United States. Data from Febrary 9 through April 18, 2020.  Data provided by @COVIDdeaths."
+#| fig-cap: "COVID-19 deaths in the United States. Data from February 9 through April 18, 2020.  Data provided by @COVIDdeaths."
 #| layout-ncol: 2
 #| fig-subcap: 
 #|  - "Linear scale"
@@ -176,7 +176,7 @@ The results of the plot interpretation are shown in @fig-lauer-results.
 (@lauer, pg.333).
 In each plot type, the largest average scores, which again indicate the greater perceived change from one state to another, come from the deceptive plots.
 This gap is somewhat pronounced in all plot types except the bubble graphs.
-Meanwhile, exaggerated plot titles seems to have played far less of a role in participant answers.
+Meanwhile, exaggerated plot titles seem to have played far less of a role in participant answers.
 This could suggest that viewers are better equipped to disregard poor headlines than poor graphs.
 
 ![Mean responses to graphs in the experiment by @lauer.](old-study-results.png){#fig-lauer-results}
@@ -220,7 +220,7 @@ Additionally, quota sampling presents an interesting approach to building a samp
 
 The survey used in this experiment will consist of two sets of plots: one set related to noncontroversial topics and one for controversial topics.
 For simplicity the controversial topics will be related to politics, health, or the environment.
-Specifically, the topics will be chosen if they tend to be interpreted differently based on ones position on the left-right political spectrum.
+Specifically, the topics will be chosen if they tend to be interpreted differently based on one's position on the left-right political spectrum.
 The noncontroversial set will focus on topics less likely to fit onto this spectrum.
 The topics in both sets should be based in the country of the participants in an attempt to mimic a visualization they could see in their daily lives.
 For the purpose of this paper we can assume the participants are all living in the United States.
@@ -270,7 +270,7 @@ For bar charts, the control graphs must have an equal width for each bar and an 
 While there are many ways to make a deceptive bar chart, this experiment will focus on a y-axis starting at some number other than zero.
 @fig-bar shows the ticket sales for a fictional minor league baseball team in 2018 and 2023.
 In the control plot, the y-axis starts at zero and goes to \$15,000, which is more than the amount in either year.
-The y-axis of the deceptive plot not only starts at \$11,00, but also stops at \$14,000.
+The y-axis of the deceptive plot not only starts at \$11,000, but also stops at \$14,000.
 Visually this suggests the ticket sales increased by a factor of three or four instead of the 12.5% increase that actually occurred.
 
 ```{r,,fig.pos="H"}
@@ -442,7 +442,7 @@ By asking demographic questions at the end of the survey the participants are mo
 Note, all demographic questions and answer banks will be written with accessibility in mind.
 Many questions will provide options for unlisted answers and a box for those who prefer not to answer.
 This includes the political question.
-While this question specifically could hinder the analysis in some ways, it way also allow us to evaluate apolitical participants along with those how fall on the political spectrum.
+While this question specifically could hinder the analysis in some ways, it way also allow us to evaluate apolitical participants along with those who fall on the traditional political spectrum.
 
 ### Attention Checks
 
@@ -504,18 +504,16 @@ Bar1_S1_type <- sample(c("Control", "Deceptive"), size = n, replace = TRUE)
 
 ```
 
-One the data is collected there will be several steps to the analysis.  Much of it will be similar to the analysis methods used by @lauer.  Specifically, the plot in @fig-lauer-results provides a nice template for seeing the differences among the groups.  For this experiment we could compare the mean values of the two versions of plots while controlling for the set for each plot type.  This could be an early indication if there is a bias effect, but we would also need to consider the variance for each group as it is possible the controversial plots have a wider range of answers.  This could mean showing a visualization off the distributions for each option mentioned above.
+Once the data is collected there will be several steps to the analysis.  Much of it will be similar to the analysis methods used by @lauer.  Specifically, the plot in @fig-lauer-results provides a nice template for seeing the differences among the groups.  For this experiment we could compare the mean values of the two versions of plots while controlling for the set for each plot type.  This could be an early indication if there is a bias effect, but we would also need to consider the variance for each group as it is possible the controversial plots have a wider range of answers.  This could mean showing a visualization off the distributions for each option mentioned above.
 
 For measuring political bias we are first going to repeat what @schwalbe2024 and condense the political leaning answers.  The participants will be given answers on a seven-point scale, but we will set all answers less than four to "left", equal to four as "neutral", and greater than four to "right".  All participants that opted out of this question will be given the label "other".  With this new categorical variable we can create a similar series of plots to the ones discussed previously that allow us to see if there are any difference in the answers provided for the plot questions based on political leanings.  This includes seeing whether one group is more susceptible to deceptive plots.
 
-Another element of the analysis could be matching political leanings to the controversial set of plots.  For each participant we could set plots that have the same label as theirs to "concordant" as @schwalbe2024 did.  In cases of disagreement we could use discordant, while all other participants could be given an other category.  This would be another way to see how bias affects perception as it would show if people overestimate effects they want or believe to be true, regardless of political position.  Keeping in line with was was just discussed, seeing the performance of people who voted in the last election versus those who did not could be interesting as well.  
+Another element of the analysis could be matching political leanings to the controversial set of plots.  For each participant we could set plots that have the same label as theirs to "concordant" as @schwalbe2024 did.  In cases of disagreement we could use discordant, while all other participants could be given an other category.  This would be another way to see how bias affects perception as it would show if people overestimate effects they want or believe to be true, regardless of political position.  Keeping in line with was was just discussed, seeing the performance of people who voted in the last election versus those who did not could be interesting as well.
 
 The question regarding which plots people prefer will be analysed as well.  While there is research into how the public perceives the plot types already, this could add to it and help creators of visualizations in the future.  
 
+I believe the dataset produced from this experiment would have other ways to be analyzed as well. Unfortunately I was unable to simulate a dataset to demonstrate some of the plots discussed above.  Additionally, I did not mention any ways model fitting could be used for analysis either.  I may add this in the future.
 
-# Potential Flaws and Improvements
-
-# Conclusion
 
 \newpage
 
@@ -698,13 +696,32 @@ ggplot(box_office, aes(x = Year, y = Dollars, group = 1)) +
        x = "Year",
        y = "Revenue (in billions)") +
   theme_minimal() +  # Clean theme
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+# Rotate x-axis labels
 
 ```
 
 **Follow-Up Question:** Instead of red points can I print the value of each number?
 
-**Updated Answer:** replace ```geom_point(color = "red", size = 2)``` with ```geom_text(aes(label = Dollars), vjust = -0.5, size = 3, color = "black")``` in previous code.
+**Updated Answer:** replace 
+```{r}
+#| label: appendix-B-222
+#| echo: true
+#| eval: false
+geom_point(color = "red", size = 2)
+``` 
+
+with 
+
+```{r}
+#| label: appendix-B-2222
+#| echo: true
+#| eval: false
+geom_text(aes(label = Dollars), vjust = -0.5, size = 3, color = "black")
+
+``` 
+
+in previous code.
 
 
 ## Unused Responses
@@ -750,7 +767,7 @@ simulated_data <- data.frame(
 **Prompt:** Given this code (code not included here - see Figure 8 in [Plots-for-Experiment.pdf](https://github.com/RyanLalicker/STAT-892-Final/blob/main/Plots-for-Experiment.pdf)) how do I make a shiny application that asks "How much did the global temperature rise from 1950 to 2020?"
 
 **Answer:** 
-Code Returned - Did not run
+Code Returned (Did not run)
 ```{r}
 #| label: appendix-B-3
 #| echo: true
