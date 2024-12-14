@@ -1,7 +1,7 @@
 This is the GitHub repository used for my final project in STAT 892.  
 
 •	The main paper was written in the file `paper.qmd`.  
-    - The pdf version of this file was turned into canvas, though it used a different name.   
+    - The pdf version of this file was turned into canvas, though it used a different name (`STAT 823 Final Paper - Ryan Lalicker` in Canvas)  
     - All R code and AI help can be found in the appendices of the paper.
     
 •	All sources for the project can be found in the file `references.bib`.
